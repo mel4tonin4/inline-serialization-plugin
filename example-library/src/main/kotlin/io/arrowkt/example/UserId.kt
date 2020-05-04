@@ -6,4 +6,6 @@ data class UserId(val value : String) {
         fun unique() =
             UserId(java.util.UUID.randomUUID().toString())
     }
+
+    override fun toString(): String = "UserId($value)"
 }
