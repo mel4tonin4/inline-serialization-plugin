@@ -14,7 +14,13 @@ fun main() {
 
   println(userId1)
 
+
+  val sampleRate = SampleRateHz(44100)
+
+  println(sampleRate)
+
   val json = Json(JsonConfiguration.Stable)
 
-  //val jsonData = json.stringify(ChannelCount.serializer(), tri)
+  //println(json.stringify(ChannelCount.serializer(), tri))
+  println(json.stringify(SampleRateHz.serializer(), sampleRate))
 }
