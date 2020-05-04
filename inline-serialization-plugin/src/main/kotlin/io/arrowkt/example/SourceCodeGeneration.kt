@@ -1,6 +1,6 @@
 package io.arrowkt.example
 
-val InlineClass.serializerClassSource get() =
+val TargetClass.serializerClassSource get() =
     """ |package $serializerClassPackageName
         |
         |import kotlinx.serialization.*
@@ -22,10 +22,10 @@ val InlineClass.serializerClassSource get() =
         |}
     """.trimMargin()
 
-val InlineClass.decoratedClassSource get() =
+val TargetClass.annotatedClassSource get() =
     """ |@kotlinx.serialization.Serializable(with = $serializerClassPackageName.$serializerClassName::class)
         |""".trimMargin() +
     originalClassSourceCode
 
-val InlineClass.serializerSourceFilename get() =
+val TargetClass.serializerSourceFilename get() =
     "${name}.inline_serialization.kt"

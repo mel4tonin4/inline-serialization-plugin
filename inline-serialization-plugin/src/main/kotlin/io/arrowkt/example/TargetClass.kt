@@ -1,18 +1,19 @@
 package io.arrowkt.example
 
-import arrow.core.Either
-import arrow.core.left
-import arrow.core.right
 import org.jetbrains.kotlin.psi.KtClass
 import org.jetbrains.kotlin.psi.KtParameter
 import org.jetbrains.kotlin.psi.KtPrimaryConstructor
 
-class InlineClass private constructor(
-        val c : KtClass,
-        val ctor : KtPrimaryConstructor,
-        val valueParameter : KtParameter,
-        val valueParameterTypeName : String,
-        val primitiveKindName : String
+import arrow.core.Either
+import arrow.core.left
+import arrow.core.right
+
+class TargetClass private constructor(
+    val c : KtClass,
+    val ctor : KtPrimaryConstructor,
+    val valueParameter : KtParameter,
+    val valueParameterTypeName : String,
+    val primitiveKindName : String
 ) {
     sealed class Problem {
         object WrongStructure : Problem()
@@ -21,7 +22,7 @@ class InlineClass private constructor(
         ) : Problem()
     }
     companion object {
-        fun tryMake(c : KtClass) : Either<Problem, InlineClass> =
+        fun tryMake(c : KtClass) : Either<Problem, TargetClass> =
             c.primaryConstructor!!.let { ctor ->
                 if (ctor.valueParameters.size != 1) {
                     Problem.WrongStructure.left()
@@ -34,7 +35,7 @@ class InlineClass private constructor(
                     if (primitiveKindName !in allPrimitiveKinds.keys)
                         Problem.UnsupportedType(valueParameterTypeName).left()
                     else
-                        InlineClass(c, ctor, valueParameter, valueParameterTypeName, primitiveKindName).right()
+                        TargetClass(c, ctor, valueParameter, valueParameterTypeName, primitiveKindName).right()
                 }
             }
     }

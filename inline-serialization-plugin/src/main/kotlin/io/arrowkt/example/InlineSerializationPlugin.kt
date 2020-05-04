@@ -15,24 +15,24 @@ val Meta.inlineSerialization: CliPlugin
         "Inline Serialization" {
             meta(
                 classDeclaration({ isAnnotatedWith<InlineSerializable>() } ) { c ->
-                    val inlineClass = InlineClass.tryMake(c).getOrHandle {  problem ->
+                    val targetClass = TargetClass.tryMake(c).getOrHandle { problem ->
                         throw when (problem) {
-                            InlineClass.Problem.WrongStructure ->
+                            TargetClass.Problem.WrongStructure ->
                                 IllegalArgumentException("inline serialization is meaningful only for classes with one and only one val member")
-                            is InlineClass.Problem.UnsupportedType ->
+                            is TargetClass.Problem.UnsupportedType ->
                                 IllegalArgumentException("unsupported val member type $problem.valueParameterTypeName: Only supported types are: ${allPrimitiveKinds.keys.joinToString { it.toLowerCase().capitalize() }}")
                         }
                     }
 
-                    val originalClassDecoration = Transform.replace<KtClass>(
+                    val originalClassAnnotation = Transform.replace<KtClass>(
                         replacing = c,
-                        newDeclaration = inlineClass.decoratedClassSource.`class`.syntheticScope
+                        newDeclaration = targetClass.annotatedClassSource.`class`.syntheticScope
                     )
                     val serializerClassGeneration = Transform.newSources<KtClass>(
-                        inlineClass.serializerClassSource.file(inlineClass.serializerSourceFilename)
+                        targetClass.serializerClassSource.file(targetClass.serializerSourceFilename)
                     )
 
-                    originalClassDecoration + serializerClassGeneration
+                    originalClassAnnotation + serializerClassGeneration
                     //serializerClassGeneration
                 }
             )
