@@ -1,7 +1,6 @@
 package io.arrowkt.example
 
 import kotlinx.serialization.Serializable
-/*
 import io.arrowkt.example.inline_serialization.ChannelCountSerializer
 
 @Serializable
@@ -10,4 +9,3 @@ data class Info(
     val channelCount: ChannelCount,
     val sampleRate: SampleRateHz
 )
-*/

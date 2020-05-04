@@ -9,6 +9,9 @@ buildscript {
 
     dependencies {
         classpath "org.jetbrains.kotlin:kotlin-serialization:$KOTLIN_VERSION"
+
+        classpath "io.arrow-kt:gradle-plugin:$ARROW_META_VERSION"
+        classpath "io.arrow-kt:compiler-plugin:$ARROW_META_VERSION"
     }
 }
 

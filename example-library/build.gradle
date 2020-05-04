@@ -12,7 +12,7 @@ dependencies {
 
     compileOnly "io.arrow-kt:arrow-annotations:$ARROW_VERSION"
 
-    // To run :create-plugin:shadowJar when building this project
+    // To run :inline-serialization-plugin:shadowJar when building this project
     api project(path: ':inline-serialization-plugin', configuration: 'shadow')
     api project(":inline-serialization")
 }

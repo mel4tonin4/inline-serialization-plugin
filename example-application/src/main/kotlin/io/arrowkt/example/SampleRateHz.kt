@@ -1,6 +1,7 @@
 package io.arrowkt.example
 
 import kotlinx.serialization.*
+import kotlinx.serialization.internal.*
 
 @Serializable(with = SampleRateHzSerializer::class)
 data class SampleRateHz(val value : Int) {
@@ -10,7 +11,8 @@ data class SampleRateHz(val value : Int) {
 @Serializer(forClass = SampleRateHz::class)
 class SampleRateHzSerializer : KSerializer<SampleRateHz> {
     override val descriptor: SerialDescriptor =
-        PrimitiveDescriptor(SampleRateHz::class.java.simpleName, PrimitiveKind.INT)
+        IntDescriptor.withName(SampleRateHz::class.java.simpleName)
+        //PrimitiveDescriptor(SampleRateHz::class.java.simpleName, PrimitiveKind.INT)
 
     override fun serialize(encoder: Encoder, value: SampleRateHz) {
         encoder.encodeInt(value.value)
