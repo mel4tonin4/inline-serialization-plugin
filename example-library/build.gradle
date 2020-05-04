@@ -21,8 +21,7 @@ compileKotlin {
     kotlinOptions {
         jvmTarget = "$JVM_TARGET_VERSION"
         freeCompilerArgs = [
-                "-Xplugin=${project.rootDir}/inline-serialization-plugin/build/libs/inline-serialization-plugin-all.jar",
-                "-XXLanguage:+InlineClasses"
+                "-Xplugin=${project.rootDir}/inline-serialization-plugin/build/libs/inline-serialization-plugin-all.jar"
         ]
     }
 }
