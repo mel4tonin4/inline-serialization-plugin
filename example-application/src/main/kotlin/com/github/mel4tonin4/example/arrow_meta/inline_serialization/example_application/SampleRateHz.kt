@@ -14,8 +14,10 @@ class SampleRateHzSerializer : KSerializer<SampleRateHz> {
         IntDescriptor.withName(SampleRateHz::class.java.simpleName)
         //PrimitiveDescriptor(SampleRateHz::class.java.simpleName, PrimitiveKind.INT)
 
-    override fun serialize(encoder: Encoder, value: SampleRateHz) {
-        encoder.encodeInt(value.value)
+    //override fun serialize(encoder: Encoder, value: SampleRateHz) {
+    //    encoder.encodeInt(value.value)
+    override fun serialize(encoder: Encoder, obj: SampleRateHz) {
+        encoder.encodeInt(obj.value)
     }
 
     override fun deserialize(decoder: Decoder): SampleRateHz {

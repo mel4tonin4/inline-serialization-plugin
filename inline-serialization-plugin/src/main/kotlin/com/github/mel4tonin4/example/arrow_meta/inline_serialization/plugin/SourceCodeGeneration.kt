@@ -14,8 +14,10 @@ val TargetClass.serializerClassSource get() =
         |          ${valueParameterTypeName}Descriptor.withName("MyData")
         |    //    PrimitiveDescriptor("$name", PrimitiveKind.$primitiveKindName)
         |
-        |    override fun serialize(encoder: Encoder, value: $name) {
-        |        encoder.encode$valueParameterTypeName(value.value)
+        |    //override fun serialize(encoder: Encoder, value: $name) {
+        |    //    encoder.encode$valueParameterTypeName(value.value)
+        |    override fun serialize(encoder: Encoder, obj: $name) {
+        |        encoder.encode$valueParameterTypeName(obj.value)
         |    }
         |
         |    override fun deserialize(decoder: Decoder): $name {
