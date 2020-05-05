@@ -1,0 +1,3 @@
+package com.github.mel4tonin4.example.arrow_meta.inline_serialization.inline_serialization
+
+annotation class InlineSerializable

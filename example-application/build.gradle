@@ -32,7 +32,7 @@ shadowJar {
 jar {
     manifest {
         attributes(
-                "Main-Class": "io.arrowkt.example.MainKt"
+                "Main-Class": "com.github.mel4tonin4.example.arrow_meta.inline_serialization.example_application.MainKt"
         )
     }
 }
