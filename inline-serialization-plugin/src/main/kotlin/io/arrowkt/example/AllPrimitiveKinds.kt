@@ -13,3 +13,6 @@ val allPrimitiveKinds = mapOf(
     "SHORT" to PrimitiveKind.SHORT,
     "STRING" to PrimitiveKind.STRING
 )
+
+val Map<String, PrimitiveKind>.allTypeNames get() =
+    keys.joinToString { it.toLowerCase().capitalize() }

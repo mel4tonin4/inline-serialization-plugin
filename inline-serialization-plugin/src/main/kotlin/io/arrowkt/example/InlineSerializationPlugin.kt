@@ -16,12 +16,7 @@ val Meta.inlineSerialization: CliPlugin
             meta(
                 classDeclaration({ isAnnotatedWith<InlineSerializable>() } ) { c ->
                     val targetClass = TargetClass.tryMake(c).getOrHandle { problem ->
-                        throw when (problem) {
-                            TargetClass.Problem.WrongStructure ->
-                                IllegalArgumentException("inline serialization is meaningful only for classes with one and only one val member")
-                            is TargetClass.Problem.UnsupportedType ->
-                                IllegalArgumentException("unsupported val member type $problem.valueParameterTypeName: Only supported types are: ${allPrimitiveKinds.keys.joinToString { it.toLowerCase().capitalize() }}")
-                        }
+                        throw problem.toException()
                     }
 
                     val originalClassAnnotation = Transform.replace<KtClass>(
