@@ -1,5 +1,5 @@
 # inline-serialization-plugin
-An ΛRROW Meta Kotlin compiler plugin for inline serialization 
+A Kotlin compiler plugin for inline serialization, implemented with ΛRROW Meta.
 
 ## Notes
 *This plug-in is not a polished product meant to be reused in other projects.*
@@ -7,6 +7,8 @@ An ΛRROW Meta Kotlin compiler plugin for inline serialization
 The current version of this plug-in based against on Kotlin 1.3.61 and Serialization Runtime 0.14.0.
 
 Kotlin 1.3.70+ and thus Serialization Runtime 0.20.0 are not supported by ΛRROW Meta, at the moment (https://github.com/arrow-kt/arrow-meta/issues/554).
+
+This plug-in project is derived by the original `hello-world` plug-in example by the ΛRROW Meta team.
 
 ## Plug-in description and project structure
 The plug-in is implemented in the `inline-serialization-plugin` module.
