@@ -33,7 +33,6 @@ val Meta.inlineSerialization: CliPlugin
                     )
 
                     originalClassAnnotation + serializerClassGeneration
-                    //serializerClassGeneration
                 }
             )
         }
